@@ -1,95 +1,348 @@
-from pathlib import Path
-import zipfile, textwrap
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-base = Path("/mnt/data/kanakk-book-website")
-base.mkdir(exist_ok=True)
+  <title>Kanakk Book</title>
 
-css = r"""
-:root{--green:#0B5D3B;--green2:#0F744A;--light:#F4F8F5;--text:#1D2B24;--muted:#647067;--gold:#D49A16;--white:#fff}
-*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--light);line-height:1.65}
-a{color:var(--green);text-decoration:none}.container{width:min(960px,calc(100% - 32px));margin:auto}
-header{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;padding:18px 0}
-nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.brand{font-size:22px;font-weight:700;color:#fff}.links{display:flex;gap:18px;flex-wrap:wrap}.links a{color:#fff;opacity:.95}
-.hero{padding:70px 0;text-align:center;background:linear-gradient(180deg,#e6f3eb,#f4f8f5)}.badge{display:inline-block;background:#dcefe3;color:var(--green);padding:7px 14px;border-radius:999px;font-weight:700;font-size:14px}
-h1{font-size:clamp(34px,7vw,58px);line-height:1.1;margin:18px 0 14px;color:var(--green)}h2{color:var(--green);margin-top:0}p{margin:0 0 14px}.subtitle{font-size:18px;color:var(--muted);max-width:650px;margin:auto}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:44px 0}.card,.content{background:var(--white);border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(11,93,59,.08)}
-.icon{font-size:30px}.page{padding:42px 0 70px}.content{max-width:820px;margin:auto}.content h1{font-size:36px}.content h2{margin-top:30px}.content ul{padding-left:22px}
-.cta{display:inline-block;background:var(--green);color:#fff;padding:12px 20px;border-radius:10px;font-weight:700;margin-top:12px}
-footer{background:#073C27;color:#e5f0e9;padding:28px 0;text-align:center}footer a{color:#e5f0e9;margin:0 8px}.small{font-size:14px;color:#748078}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.hero{padding:52px 0}.links{gap:12px}.content{padding:20px}}
-"""
+  <style>
+    :root {
+      --green: #0B5D3B;
+      --green2: #0F744A;
+      --light: #F4F8F5;
+      --text: #1D2B24;
+      --muted: #647067;
+      --gold: #D4A916;
+      --white: #ffffff;
+    }
 
-header = """
-<header><div class="container"><nav>
-<a class="brand" href="index.html">Kanakk Book</a>
-<div class="links">
-<a href="index.html">Home</a>
-<a href="privacy-policy.html">Privacy Policy</a>
-<a href="terms.html">Terms</a>
-<a href="support.html">Support</a>
-</div></nav></div></header>
-"""
+    * {
+      box-sizing: border-box;
+    }
 
-footer = """
-<footer><div class="container">
-<p>© 2026 Kanakk Book. All rights reserved.</p>
-<p><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms & Conditions</a> · <a href="support.html">Contact Support</a></p>
-</div></footer>
-"""
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.6;
+    }
 
-index = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kanakk Book – Simple Business Credit Management</title><meta name="description" content="Kanakk Book helps small businesses manage customer credits, payments and transactions.">
-<link rel="stylesheet" href="style.css"></head><body>{header}
-<section class="hero"><div class="container"><span class="badge">Simple • Local • Easy to Use</span><h1>Manage Your Business<br>With Kanakk Book</h1>
-<p class="subtitle">A simple app to record customer credits, payments and business transactions in one place.</p>
-<a class="cta" href="support.html">Get Support</a></div></section>
-<main class="container"><section class="grid">
-<div class="card"><div class="icon">👥</div><h2>Customers</h2><p>Add and manage customer details and balances easily.</p></div>
-<div class="card"><div class="icon">💰</div><h2>Transactions</h2><p>Record credits, payments and transaction history.</p></div>
-<div class="card"><div class="icon">📊</div><h2>Reports</h2><p>View useful daily, weekly and monthly business reports.</p></div>
-</section></main>{footer}</body></html>"""
+    a {
+      color: var(--green);
+      text-decoration: none;
+    }
 
-privacy = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Privacy Policy – Kanakk Book</title><link rel="stylesheet" href="style.css"></head><body>{header}
-<main class="page container"><article class="content"><h1>Privacy Policy</h1><p class="small"><strong>Effective Date:</strong> 26 August 2026</p>
-<p>Kanakk Book respects your privacy. This Privacy Policy explains how information and data are handled when you use the Kanakk Book application.</p>
-<h2>1. Information and Data Storage</h2><p>Kanakk Book allows users to manage customer details, credit records, payments, transactions, and other related information.</p><p>Currently, the data entered into Kanakk Book is stored locally on your device. We do not currently store your customer, financial, or transaction data on our own cloud servers.</p><p>You are responsible for keeping your device secure and protecting access to the application.</p>
-<h2>2. Data Backup and Restore</h2><p>Kanakk Book may provide options to back up or export your data. Backup files may be stored in a location selected by you.</p><p>You are responsible for keeping your backup files safe and secure. We recommend creating regular backups to help prevent data loss caused by device failure, loss, damage, or deletion of the application.</p>
-<h2>3. Future Cloud Features</h2><p>Kanakk Book may introduce optional features in the future, such as cloud backup, data synchronization, or account-based data storage.</p><p>If such features are introduced, this Privacy Policy will be updated to explain how the data is collected, stored, protected, and used.</p>
-<h2>4. Third-Party Services</h2><p>Kanakk Book may use third-party services such as advertising, analytics, crash reporting, or other services. If such services collect or process user information, this Privacy Policy will be updated accordingly.</p>
-<h2>5. Children's Privacy</h2><p>Kanakk Book is not specifically intended for children under the age required by applicable laws to provide consent for the processing of their personal information. We do not knowingly collect personal information from children.</p>
-<h2>6. Data Security</h2><p>We take reasonable steps to design the application with data protection in mind. However, no method of electronic storage is completely secure. Because data is currently stored locally on your device, you should protect your device with appropriate security measures.</p>
-<h2>7. Your Responsibility</h2><p>You are responsible for the information entered into Kanakk Book, including customer and transaction details. Please ensure that you have the necessary permission to store and manage information about your customers.</p>
-<h2>8. Changes to This Privacy Policy</h2><p>We may update this Privacy Policy when the application changes or new features are introduced. Any updates will be reflected in the Privacy Policy available within the application and/or through the official Privacy Policy page.</p>
-<h2>9. Contact Us</h2><p>If you have questions about this Privacy Policy, please contact us at <a href="mailto:srbshameer098@gmail.com">srbshameer098@gmail.com</a>.</p>
-</article></main>{footer}</body></html>"""
+    .container {
+      width: min(960px, calc(100% - 32px));
+      margin: auto;
+    }
 
-terms = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Terms & Conditions – Kanakk Book</title><link rel="stylesheet" href="style.css"></head><body>{header}
-<main class="page container"><article class="content"><h1>Terms & Conditions</h1><p class="small"><strong>Effective Date:</strong> 26 August 2026</p><p>By downloading, installing, or using Kanakk Book, you agree to these Terms & Conditions.</p>
-<h2>1. Use of the Application</h2><p>Kanakk Book provides tools to help users record and manage customer credits, payments, transactions, and related business information. You agree to use the application only for lawful purposes.</p>
-<h2>2. Accuracy of Information</h2><p>You are responsible for ensuring that the information entered into Kanakk Book is accurate. Kanakk Book does not guarantee the accuracy of information entered by users.</p>
-<h2>3. Local Data Storage</h2><p>Currently, application data is primarily stored locally on your device. You are responsible for maintaining backups of important information where backup or export options are available.</p>
-<h2>4. Data Loss</h2><p>Although we aim to provide a reliable application, Kanakk Book cannot guarantee that data will never be lost.</p><ul><li>Device damage or failure</li><li>Loss or theft of your device</li><li>Application deletion</li><li>Operating system issues</li><li>Failure to maintain backups</li><li>User actions or incorrect data entry</li></ul>
-<h2>5. Financial Disclaimer</h2><p>Kanakk Book is a record-keeping and management tool only. The application does not provide financial, legal, banking, tax, accounting, or investment advice. You are responsible for verifying your financial records and transactions.</p>
-<h2>6. Future Features</h2><p>Kanakk Book may introduce new features, including cloud backup, synchronization, accounts, or other services. The availability and use of future features may be subject to additional terms or updated policies.</p>
-<h2>7. Changes to the Application</h2><p>We may modify, improve, add, or remove features from Kanakk Book at any time.</p>
-<h2>8. Changes to These Terms</h2><p>We may update these Terms & Conditions from time to time. Continued use of Kanakk Book after an update may indicate acceptance of the updated Terms, where permitted by applicable law.</p>
-<h2>9. Contact Us</h2><p>For questions, feedback, or support, please contact us at <a href="mailto:srbshameer098@gmail.com">srbshameer098@gmail.com</a>.</p>
-</article></main>{footer}</body></html>"""
+    header {
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      color: white;
+      padding: 18px 0;
+    }
 
-support = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Support – Kanakk Book</title><link rel="stylesheet" href="style.css"></head><body>{header}
-<main class="page container"><article class="content"><h1>Contact Support</h1><p>Need help with Kanakk Book? You can contact us using the email below.</p><h2>Email Support</h2><p><a class="cta" href="mailto:srbshameer098@gmail.com?subject=Kanakk%20Book%20Support">srbshameer098@gmail.com</a></p><p class="small">Please include your app version and a short description of the issue when contacting support.</p></article></main>{footer}</body></html>"""
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
 
-files = {"index.html": index, "privacy-policy.html": privacy, "terms.html": terms, "support.html": support, "style.css": css}
-for name, content in files.items():
-    (base/name).write_text(content, encoding="utf-8")
+    .brand {
+      font-size: 24px;
+      font-weight: bold;
+    }
 
-zip_path = Path("/mnt/data/kanakk-book-website.zip")
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-    for p in base.iterdir():
-        z.write(p, arcname=p.name)
+    .links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-print("Created website package:", zip_path)
-print("Files:", ", ".join(files.keys()))
+    .links a {
+      color: white;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e5f0e9;
+      color: var(--green);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 58px);
+      line-height: 1.1;
+      margin: 20px 0;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      background: var(--green);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding-bottom: 70px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.08);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: var(--green);
+    }
+
+    .page {
+      padding: 50px 0 80px;
+    }
+
+    .page h1 {
+      font-size: 42px;
+      color: var(--green);
+    }
+
+    .page h2 {
+      margin-top: 35px;
+      color: var(--green);
+    }
+
+    .content {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    }
+
+    footer {
+      background: #0b3523;
+      color: white;
+      padding: 25px 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: white;
+      margin: 0 8px;
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        flex-direction: column;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">Kanakk Book</div>
+
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#terms">Terms</a>
+        <a href="#support">Support</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+
+    <section class="hero">
+      <div class="container">
+        <span class="badge">Simple • Local • Easy to Use</span>
+
+        <h1>Manage Your Business<br>With Kanakk Book</h1>
+
+        <p>
+          A simple app to record customer credits, payments and
+          business transactions in one place.
+        </p>
+
+        <a class="button" href="#support">Get Support</a>
+      </div>
+    </section>
+
+    <section class="container grid">
+
+      <div class="card">
+        <h2>👥 Customers</h2>
+        <p>Add and manage customer details and balances easily.</p>
+      </div>
+
+      <div class="card">
+        <h2>💰 Transactions</h2>
+        <p>Record credits, payments and transaction history.</p>
+      </div>
+
+      <div class="card">
+        <h2>📊 Reports</h2>
+        <p>View useful daily, weekly and monthly business reports.</p>
+      </div>
+
+    </section>
+
+    <section id="privacy" class="page">
+      <div class="container">
+        <div class="content">
+
+          <h1>Privacy Policy</h1>
+
+          <p><strong>Effective Date: 26 August 2026</strong></p>
+
+          <h2>Information and Data Storage</h2>
+          <p>
+            Kanakk Book allows users to manage customer details, credit records,
+            payments, transactions, and other related business information.
+            Currently, data entered into Kanakk Book is stored locally on the user's device.
+          </p>
+
+          <h2>Data Backup and Restore</h2>
+          <p>
+            Kanakk Book may provide options to back up or export data.
+            Users are responsible for keeping backup files safe and secure.
+          </p>
+
+          <h2>Future Cloud Features</h2>
+          <p>
+            Kanakk Book may introduce optional cloud backup, synchronization,
+            or account-based features in the future. This policy may be updated
+            when such features are introduced.
+          </p>
+
+          <h2>Data Security</h2>
+          <p>
+            We take reasonable steps to design the application with data
+            protection in mind. However, no electronic storage method is
+            completely secure.
+          </p>
+
+          <h2>Contact Us</h2>
+          <p>
+            For privacy questions, contact:
+            <a href="mailto:srbshameer098@gmail.com">
+              srbshameer098@gmail.com
+            </a>
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="terms" class="page">
+      <div class="container">
+        <div class="content">
+
+          <h1>Terms & Conditions</h1>
+
+          <p><strong>Effective Date: 26 August 2026</strong></p>
+
+          <h2>Use of the Application</h2>
+          <p>
+            Kanakk Book provides tools to record and manage customer credits,
+            payments, transactions and related business information.
+          </p>
+
+          <h2>Accuracy of Information</h2>
+          <p>
+            Users are responsible for ensuring that the information entered
+            into Kanakk Book is accurate.
+          </p>
+
+          <h2>Local Data Storage</h2>
+          <p>
+            Application data is primarily stored locally on the user's device.
+            Users should maintain backups of important information.
+          </p>
+
+          <h2>Data Loss</h2>
+          <p>
+            Kanakk Book cannot guarantee that data will never be lost.
+            Data loss may result from device damage, device loss, application
+            deletion, operating system issues, or failure to maintain backups.
+          </p>
+
+          <h2>Financial Disclaimer</h2>
+          <p>
+            Kanakk Book is a record-keeping and management tool only.
+            It does not provide financial, legal, banking, tax, accounting,
+            or investment advice.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="support" class="page">
+      <div class="container">
+        <div class="content">
+
+          <h1>Contact Support</h1>
+
+          <p>
+            Need help with Kanakk Book? Contact us using the email below.
+          </p>
+
+          <h2>Email</h2>
+
+          <p>
+            <a href="mailto:srbshameer098@gmail.com">
+              srbshameer098@gmail.com
+            </a>
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Kanakk Book. All rights reserved.</p>
+
+    <p>
+      <a href="#privacy">Privacy Policy</a> ·
+      <a href="#terms">Terms & Conditions</a> ·
+      <a href="#support">Contact Support</a>
+    </p>
+  </footer>
+
+</body>
+</html>
