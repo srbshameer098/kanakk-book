@@ -3,346 +3,191 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Kanakk Book</title>
-
-  <style>
-    :root {
-      --green: #0B5D3B;
-      --green2: #0F744A;
-      --light: #F4F8F5;
-      --text: #1D2B24;
-      --muted: #647067;
-      --gold: #D4A916;
-      --white: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--light);
-      line-height: 1.6;
-    }
-
-    a {
-      color: var(--green);
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(960px, calc(100% - 32px));
-      margin: auto;
-    }
-
-    header {
-      background: linear-gradient(135deg, var(--green), var(--green2));
-      color: white;
-      padding: 18px 0;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .brand {
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .links a {
-      color: white;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 80px 0;
-    }
-
-    .badge {
-      display: inline-block;
-      background: #e5f0e9;
-      color: var(--green);
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: bold;
-    }
-
-    h1 {
-      font-size: clamp(36px, 6vw, 58px);
-      line-height: 1.1;
-      margin: 20px 0;
-    }
-
-    .hero p {
-      max-width: 650px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 25px;
-      background: var(--green);
-      color: white;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding-bottom: 70px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 8px 25px rgba(0,0,0,.08);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: var(--green);
-    }
-
-    .page {
-      padding: 50px 0 80px;
-    }
-
-    .page h1 {
-      font-size: 42px;
-      color: var(--green);
-    }
-
-    .page h2 {
-      margin-top: 35px;
-      color: var(--green);
-    }
-
-    .content {
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 25px rgba(0,0,0,.06);
-    }
-
-    footer {
-      background: #0b3523;
-      color: white;
-      padding: 25px 0;
-      text-align: center;
-    }
-
-    footer a {
-      color: white;
-      margin: 0 8px;
-    }
-
-    @media (max-width: 700px) {
-      .nav {
-        flex-direction: column;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <meta name="description" content="Kanakk Book — a simple digital khata and customer credit management app for small businesses.">
+  <meta name="theme-color" content="#12652a">
+  <title>Kanakk Book — Simple Digital Khata</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-  <header>
-    <div class="container nav">
-      <div class="brand">Kanakk Book</div>
-
-      <div class="links">
-        <a href="#home">Home</a>
-        <a href="#privacy">Privacy Policy</a>
-        <a href="#terms">Terms</a>
-        <a href="#support">Support</a>
+  <header class="site-header">
+    <nav class="nav container">
+      <a class="brand" href="#home">
+        <img src="assets/logo.png" alt="Kanakk Book logo">
+        <span>Kanakk <b>Book</b></span>
+      </a>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#premium">Premium</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="#contact">Support</a>
       </div>
-    </div>
+    </nav>
   </header>
 
   <main id="home">
-
     <section class="hero">
-      <div class="container">
-        <span class="badge">Simple • Local • Easy to Use</span>
-
-        <h1>Manage Your Business<br>With Kanakk Book</h1>
-
-        <p>
-          A simple app to record customer credits, payments and
-          business transactions in one place.
-        </p>
-
-        <a class="button" href="#support">Get Support</a>
-      </div>
-    </section>
-
-    <section class="container grid">
-
-      <div class="card">
-        <h2>👥 Customers</h2>
-        <p>Add and manage customer details and balances easily.</p>
-      </div>
-
-      <div class="card">
-        <h2>💰 Transactions</h2>
-        <p>Record credits, payments and transaction history.</p>
-      </div>
-
-      <div class="card">
-        <h2>📊 Reports</h2>
-        <p>View useful daily, weekly and monthly business reports.</p>
-      </div>
-
-    </section>
-
-    <section id="privacy" class="page">
-      <div class="container">
-        <div class="content">
-
-          <h1>Privacy Policy</h1>
-
-          <p><strong>Effective Date: 26 August 2026</strong></p>
-
-          <h2>Information and Data Storage</h2>
-          <p>
-            Kanakk Book allows users to manage customer details, credit records,
-            payments, transactions, and other related business information.
-            Currently, data entered into Kanakk Book is stored locally on the user's device.
+      <div class="hero-glow"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">DIGITAL KHATA FOR EVERYDAY BUSINESS</span>
+          <h1>Keep your business accounts <span>simple.</span></h1>
+          <p class="hero-text">
+            Kanakk Book helps small businesses manage customers, credit, payments,
+            outstanding balances and reminders — all from one simple app.
           </p>
-
-          <h2>Data Backup and Restore</h2>
-          <p>
-            Kanakk Book may provide options to back up or export data.
-            Users are responsible for keeping backup files safe and secure.
-          </p>
-
-          <h2>Future Cloud Features</h2>
-          <p>
-            Kanakk Book may introduce optional cloud backup, synchronization,
-            or account-based features in the future. This policy may be updated
-            when such features are introduced.
-          </p>
-
-          <h2>Data Security</h2>
-          <p>
-            We take reasonable steps to design the application with data
-            protection in mind. However, no electronic storage method is
-            completely secure.
-          </p>
-
-          <h2>Contact Us</h2>
-          <p>
-            For privacy questions, contact:
-            <a href="mailto:srbshameer098@gmail.com">
-              srbshameer098@gmail.com
-            </a>
-          </p>
-
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#download">Get Kanakk Book</a>
+            <a class="btn btn-outline" href="#features">Explore features</a>
+          </div>
+          <div class="trust-row">
+            <div><strong>₹</strong><span>Track credit & payments</span></div>
+            <div><strong>✓</strong><span>Simple customer records</span></div>
+            <div><strong>↗</strong><span>Send reminders easily</span></div>
+          </div>
+        </div>
+        <div class="hero-phone">
+          <div class="phone">
+            <div class="phone-screen">
+              <img src="assets/screenshot-home.jpeg" alt="Kanakk Book home dashboard">
+            </div>
+          </div>
+          <div class="floating-card card-one"><b>₹190</b><small>Outstanding</small></div>
+          <div class="floating-card card-two"><b>7</b><small>Customers</small></div>
         </div>
       </div>
     </section>
 
-    <section id="terms" class="page">
+    <section class="section intro">
+      <div class="container center">
+        <span class="section-kicker">BUILT FOR SMALL BUSINESSES</span>
+        <h2>Your daily accounts, without the paperwork.</h2>
+        <p>Replace notebooks and scattered records with a clean, easy-to-use digital khata.</p>
+      </div>
+    </section>
+
+    <section id="features" class="section features">
       <div class="container">
-        <div class="content">
-
-          <h1>Terms & Conditions</h1>
-
-          <p><strong>Effective Date: 26 August 2026</strong></p>
-
-          <h2>Use of the Application</h2>
-          <p>
-            Kanakk Book provides tools to record and manage customer credits,
-            payments, transactions and related business information.
-          </p>
-
-          <h2>Accuracy of Information</h2>
-          <p>
-            Users are responsible for ensuring that the information entered
-            into Kanakk Book is accurate.
-          </p>
-
-          <h2>Local Data Storage</h2>
-          <p>
-            Application data is primarily stored locally on the user's device.
-            Users should maintain backups of important information.
-          </p>
-
-          <h2>Data Loss</h2>
-          <p>
-            Kanakk Book cannot guarantee that data will never be lost.
-            Data loss may result from device damage, device loss, application
-            deletion, operating system issues, or failure to maintain backups.
-          </p>
-
-          <h2>Financial Disclaimer</h2>
-          <p>
-            Kanakk Book is a record-keeping and management tool only.
-            It does not provide financial, legal, banking, tax, accounting,
-            or investment advice.
-          </p>
-
+        <div class="section-heading">
+          <span class="section-kicker">FEATURES</span>
+          <h2>Everything you need to manage dues</h2>
+          <p>Designed around the way local businesses actually track customer accounts.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="icon">👥</div><h3>Customer Management</h3>
+            <p>Add customer names, phone numbers, addresses, notes and opening balances in seconds.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon">↗</div><h3>Credit Tracking</h3>
+            <p>Record purchases and credit transactions so you always know what is due.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon">↓</div><h3>Payment Tracking</h3>
+            <p>Record payments with date, description and payment method such as cash.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon">₹</div><h3>Outstanding Balance</h3>
+            <p>See current dues clearly and identify customers who have pending balances.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon">💬</div><h3>WhatsApp Reminders</h3>
+            <p>Choose a language and message template, then send a payment reminder via WhatsApp.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon">🌐</div><h3>English & Malayalam</h3>
+            <p>Use the app in English or Malayalam for a more comfortable daily workflow.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon">📄</div><h3>Customer Reports</h3>
+            <p>View transaction history and generate customer information for your records.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon">☁</div><h3>Backup & Restore</h3>
+            <p>Premium users can unlock backup and restore functionality for their business data.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="support" class="page">
+    <section id="screenshots" class="section screenshots">
       <div class="container">
-        <div class="content">
-
-          <h1>Contact Support</h1>
-
-          <p>
-            Need help with Kanakk Book? Contact us using the email below.
-          </p>
-
-          <h2>Email</h2>
-
-          <p>
-            <a href="mailto:srbshameer098@gmail.com">
-              srbshameer098@gmail.com
-            </a>
-          </p>
-
+        <div class="section-heading">
+          <span class="section-kicker">APP PREVIEW</span>
+          <h2>See Kanakk Book in action</h2>
+          <p>A quick look at the simple workflow inside the app.</p>
+        </div>
+        <div class="screenshot-grid">
+          <figure><img src="assets/screenshot-home.jpeg" alt="Kanakk Book dashboard"><figcaption>Dashboard</figcaption></figure>
+          <figure><img src="assets/screenshot-customer.jpeg" alt="Add customer screen"><figcaption>Add customers</figcaption></figure>
+          <figure><img src="assets/screenshot-credit.jpeg" alt="Add credit screen"><figcaption>Record credit</figcaption></figure>
+          <figure><img src="assets/screenshot-payment.jpeg" alt="Add payment screen"><figcaption>Record payment</figcaption></figure>
+          <figure><img src="assets/screenshot-transactions.jpeg" alt="Customer transactions"><figcaption>Transaction history</figcaption></figure>
+          <figure><img src="assets/screenshot-reminder.jpeg" alt="WhatsApp reminder screen"><figcaption>Send reminders</figcaption></figure>
         </div>
       </div>
     </section>
 
+    <section id="premium" class="section premium">
+      <div class="container premium-box">
+        <div>
+          <span class="section-kicker">KADA KANAKKU PREMIUM</span>
+          <h2>Unlock more. Manage better.</h2>
+          <p>Remove ads and unlock premium features designed to make your daily bookkeeping easier.</p>
+          <ul>
+            <li>✓ Ad-free experience</li>
+            <li>✓ Backup & Restore</li>
+            <li>✓ Premium features</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <span>PREMIUM</span>
+          <strong>₹399<small>/yr</small></strong>
+          <p>Simple annual plan</p>
+          <a class="btn btn-primary" href="#download">Get the app</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="section download">
+      <div class="container download-box">
+        <img src="assets/logo.png" alt="Kanakk Book" class="download-logo">
+        <div>
+          <span class="section-kicker">READY TO GO DIGITAL?</span>
+          <h2>Start managing your khata with Kanakk Book.</h2>
+          <p>Download the Android app and keep your customer accounts organized.</p>
+          <a class="btn btn-light" href="#" onclick="alert('Add your Google Play Store link here.'); return false;">Download on Google Play</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <p>© 2026 Kanakk Book. All rights reserved.</p>
-
-    <p>
-      <a href="#privacy">Privacy Policy</a> ·
-      <a href="#terms">Terms & Conditions</a> ·
-      <a href="#support">Contact Support</a>
-    </p>
+  <footer id="contact" class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="#home"><img src="assets/logo.png" alt=""> <span>Kanakk <b>Book</b></span></a>
+        <p>Simple digital bookkeeping for small businesses.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#premium">Premium</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="mailto:srbshameer098@gmail.com">srbshameer098@gmail.com</a>
+      </div>
+    </div>
+    <div class="container copyright">© <span id="year"></span> Kanakk Book. All rights reserved.</div>
   </footer>
-
+  <script src="js/script.js"></script>
 </body>
 </html>
