@@ -1,15 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Kanakk Book - simple digital khata for small businesses">
-  <meta name="theme-color" content="#176b2b">
-  <title>Kanakk Book — Digital Khata</title>
-  <link rel="icon" href="assets/logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kanakk Book - Simple Credit & Payment Management</title>
+  <meta name="description"
+        content="Kanakk Book helps shops and small businesses manage customers, credits, payments and reminders easily.">
 
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
@@ -18,10 +20,9 @@
     }
 
     body {
-      margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      color: #172019;
-      background: #f8f7f2;
+      background: #f7f8f5;
+      color: #222;
       line-height: 1.6;
     }
 
@@ -30,21 +31,21 @@
       color: inherit;
     }
 
-    .container {
-      width: min(1120px, calc(100% - 32px));
-      margin: auto;
-    }
+    /* ================= HEADER ================= */
 
-    .header {
+    header {
+      background: #176b2a;
+      color: white;
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: #fff;
-      border-bottom: 1px solid #e6e9e6;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
 
-    .nav {
-      height: 72px;
+    .navbar {
+      max-width: 1150px;
+      margin: auto;
+      padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -53,448 +54,417 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 21px;
-      font-weight: 800;
+      gap: 12px;
+      font-size: 25px;
+      font-weight: bold;
     }
 
     .brand img {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
       border-radius: 12px;
     }
 
-    .brand b {
-      color: #ffbf19;
-    }
-
-    .links {
+    nav {
       display: flex;
-      gap: 26px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .links a:hover {
-      color: #176b2b;
-    }
-
-    .menu {
-      display: none;
-      font-size: 27px;
-      background: none;
-      border: 0;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #0b4e20, #176b2b);
-      color: #fff;
-      padding: 78px 0;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 45px;
+      gap: 25px;
       align-items: center;
     }
 
-    .eyebrow,
-    .kicker {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1.6px;
+    nav a {
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #ffd21c;
+    }
+
+    .nav-button {
+      background: #ffd21c;
+      color: #155b25;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      background: linear-gradient(135deg, #176b2a, #0d4d1d);
+      color: white;
+      padding: 75px 20px 90px;
+    }
+
+    .hero-container {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 50px;
     }
 
     .hero h1 {
-      font-size: clamp(42px, 6vw, 68px);
-      line-height: 1.04;
-      margin: 16px 0;
+      font-size: 54px;
+      line-height: 1.15;
+      margin-bottom: 20px;
     }
 
     .hero h1 span {
-      color: #ffd13c;
+      color: #ffd21c;
     }
 
     .hero p {
-      font-size: 18px;
-      color: #dcecdf;
-      max-width: 650px;
+      font-size: 20px;
+      max-width: 600px;
+      color: #e9f4eb;
+      margin-bottom: 30px;
     }
 
-    .buttons {
+    .hero-buttons {
       display: flex;
-      gap: 12px;
+      gap: 15px;
       flex-wrap: wrap;
-      margin: 28px 0;
     }
 
-    .btn {
+    .primary-btn {
       display: inline-block;
-      padding: 13px 21px;
-      border-radius: 12px;
-      font-weight: 800;
+      background: #ffd21c;
+      color: #145d25;
+      padding: 14px 25px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
     }
 
-    .primary {
-      background: #ffbf19;
-      color: #26300e;
+    .secondary-btn {
+      display: inline-block;
+      border: 2px solid white;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
     }
 
-    .outline {
-      border: 1px solid #c7e2cc;
-      color: #fff;
-    }
-
-    .phone-wrap {
+    .hero-icon {
       display: flex;
       justify-content: center;
     }
 
-    .phone {
-      width: 290px;
-      padding: 8px;
-      border: 8px solid #111;
-      border-radius: 38px;
-      background: #111;
-      box-shadow: 0 30px 70px #052c13aa;
-      transform: rotate(2deg);
+    .hero-icon img {
+      width: min(350px, 90%);
+      border-radius: 55px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     }
 
-    .phone img {
-      width: 100%;
-      display: block;
-      border-radius: 27px;
+    /* ================= SECTIONS ================= */
+
+    section {
+      padding: 75px 20px;
     }
 
-    .section {
-      padding: 85px 0;
-    }
-
-    .white {
-      background: #fff;
-    }
-
-    .center {
-      text-align: center;
-    }
-
-    .heading {
-      margin-bottom: 38px;
-    }
-
-    .heading h2 {
-      font-size: clamp(30px, 4vw, 44px);
-      line-height: 1.15;
-      margin: 10px 0;
-    }
-
-    .heading p {
-      color: #69736b;
-      max-width: 680px;
+    .container {
+      max-width: 1150px;
       margin: auto;
     }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+    .section-title {
+      text-align: center;
+      font-size: 38px;
+      color: #176b2a;
+      margin-bottom: 12px;
     }
 
-    .feature {
-      background: #fff;
-      border: 1px solid #e3e9e3;
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 8px 30px #14371b0a;
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto 45px;
+      font-size: 18px;
+    }
+
+    /* ================= FEATURES ================= */
+
+    .features {
+      background: white;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .feature-card {
+      background: #f8faf7;
+      padding: 30px 25px;
+      border-radius: 16px;
+      border: 1px solid #e1e7e0;
+      text-align: center;
+      transition: 0.25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
 
     .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: #e8f5e9;
-      color: #176b2b;
-      display: grid;
-      place-items: center;
-      font-size: 23px;
+      font-size: 42px;
       margin-bottom: 15px;
     }
 
-    .feature h3 {
-      font-size: 17px;
-      margin: 0 0 8px;
+    .feature-card h3 {
+      color: #176b2a;
+      margin-bottom: 10px;
+      font-size: 21px;
     }
 
-    .feature p {
-      font-size: 13px;
-      color: #69736b;
-      margin: 0;
+    .feature-card p {
+      color: #666;
     }
 
-    .screens {
+    /* ================= SCREENSHOTS ================= */
+
+    .screenshots {
+      background: #f7f8f5;
+    }
+
+    .screenshot-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 17px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      align-items: start;
     }
 
-    .screens figure {
-      margin: 0;
+    .screenshot-card {
+      background: white;
+      padding: 12px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
       text-align: center;
     }
 
-    .screens img {
-      width: 100%;
-      border-radius: 20px;
+    .screenshot-card img {
       display: block;
-      box-shadow: 0 12px 28px #14371b22;
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
     }
 
-    .screens figcaption {
-      font-size: 12px;
-      font-weight: 700;
-      color: #69736b;
-      margin-top: 9px;
+    .screenshot-card h3 {
+      padding: 15px 5px 8px;
+      color: #176b2a;
     }
+
+    /* ================= PREMIUM ================= */
 
     .premium {
-      background: #eef7ec;
+      background: white;
     }
 
     .plans {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 25px;
+      align-items: stretch;
     }
 
     .plan {
-      background: #fff;
-      border-radius: 22px;
-      padding: 30px;
-      border: 1px solid #dfe8df;
       position: relative;
-      box-shadow: 0 12px 35px #14371b12;
+      background: #fff;
+      border: 2px solid #e1e6df;
+      border-radius: 18px;
+      padding: 32px 25px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
     }
 
     .plan.featured {
-      border: 2px solid #ffbf19;
-      transform: translateY(-8px);
+      border-color: #176b2a;
+      transform: scale(1.03);
     }
 
-    .badge {
+    .popular {
       position: absolute;
-      right: 18px;
-      top: 17px;
-      background: #ffbf19;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #176b2a;
+      color: white;
+      padding: 5px 18px;
       border-radius: 20px;
-      padding: 5px 10px;
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .plan .label {
-      color: #176b2b;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1.4px;
+      font-size: 13px;
+      font-weight: bold;
     }
 
     .plan h3 {
-      font-size: 22px;
-      margin: 9px 0;
+      font-size: 24px;
+      color: #176b2a;
+      margin-bottom: 15px;
     }
 
     .price {
-      font-size: 39px;
-      font-weight: 800;
-      color: #176b2b;
+      font-size: 40px;
+      font-weight: bold;
+      color: #222;
     }
 
-    .price small {
-      font-size: 12px;
-      color: #69736b;
-    }
-
-    .plan p {
-      font-size: 13px;
-      color: #69736b;
+    .duration {
+      color: #777;
+      margin-bottom: 25px;
     }
 
     .plan ul {
-      padding: 0;
       list-style: none;
-      font-size: 13px;
+      text-align: left;
+      margin: 20px 0 30px;
+    }
+
+    .plan li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .plan li::before {
+      content: "✓";
+      color: #176b2a;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .plan-btn {
+      display: block;
+      background: #176b2a;
+      color: white;
+      padding: 13px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
+
+    /* ================= CTA ================= */
+
+    .cta {
+      background: #176b2a;
+      color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      color: #e5f0e6;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: #103e1b;
+      color: white;
+      padding: 40px 20px 25px;
+    }
+
+    .footer-container {
+      max-width: 1150px;
+      margin: auto;
       display: grid;
-      gap: 9px;
-      margin: 20px 0;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
     }
 
-    .green-outline {
-      border: 1px solid #176b2b;
-      color: #176b2b;
-    }
-
-    .download {
-      background: #176b2b;
-      color: #fff;
-    }
-
-    .download-box {
+    .footer-brand {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 22px;
+      font-weight: bold;
     }
 
-    .download-logo {
-      width: 100px;
-      border-radius: 22px;
+    .footer-brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
     }
 
-    .download p {
-      color: #dcecdf;
+    footer p {
+      color: #cbd8cd;
     }
 
-    .footer {
-      background: #0c1d11;
-      color: #dbe5dd;
-      padding: 55px 0 20px;
+    footer h3 {
+      margin-bottom: 12px;
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: 30px;
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      color: #d7e3d9;
     }
 
-    .footer h4 {
-      color: #fff;
-      margin: 0 0 12px;
+    .footer-links a:hover {
+      color: #ffd21c;
     }
 
-    .footer a,
-    .footer p {
-      font-size: 13px;
-      color: #aebbb1;
-      display: block;
-      margin: 7px 0;
+    .copyright {
+      max-width: 1150px;
+      margin: 30px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      text-align: center;
+      color: #b9c8bc;
     }
 
-    .copy {
-      border-top: 1px solid #26382a;
-      margin-top: 35px;
-      padding-top: 16px;
-      color: #7e8d82;
-      font-size: 12px;
-    }
+    /* ================= MOBILE ================= */
 
-    .legal {
-      background: #fff;
-    }
+    @media (max-width: 850px) {
 
-    .legal-main {
-      max-width: 850px;
-      padding: 75px 0 100px;
-    }
+      nav {
+        display: none;
+      }
 
-    .legal-main h1 {
-      font-size: 46px;
-    }
-
-    .legal-main h2 {
-      margin-top: 35px;
-    }
-
-    .legal-main p {
-      color: #4e5a52;
-    }
-
-    .legal-main a {
-      color: #176b2b;
-      font-weight: 700;
-    }
-
-    @media (max-width: 900px) {
-      .hero-grid {
+      .hero-container {
         grid-template-columns: 1fr;
+        text-align: center;
       }
 
-      .phone-wrap {
-        order: -1;
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .features {
-        grid-template-columns: repeat(2, 1fr);
+      .hero-buttons {
+        justify-content: center;
       }
 
-      .screens {
-        grid-template-columns: repeat(3, 1fr);
+      .hero h1 {
+        font-size: 42px;
       }
 
+      .feature-grid,
       .plans {
         grid-template-columns: 1fr;
+      }
+
+      .screenshot-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: auto;
       }
 
       .plan.featured {
         transform: none;
       }
 
-      .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 650px) {
-      .links {
-        display: none;
-        position: absolute;
-        top: 72px;
-        left: 0;
-        right: 0;
-        background: #fff;
-        padding: 18px;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .links.open {
-        display: flex;
-      }
-
-      .menu {
-        display: block;
-      }
-
-      .hero {
-        padding: 55px 0;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .phone {
-        width: 250px;
-      }
-
-      .features {
+      .footer-container {
         grid-template-columns: 1fr;
-      }
-
-      .screens {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .download-box {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .legal-main h1 {
-        font-size: 37px;
       }
     }
   </style>
@@ -502,446 +472,408 @@
 
 <body>
 
-  <header class="header">
-    <nav class="nav container">
+  <!-- ================= HEADER ================= -->
 
-      <a class="brand" href="#home">
-        <img src="assets/logo.png" alt="Kanakk Book">
-        <span>Kanakk <b>Book</b></span>
+  <header>
+    <div class="navbar">
+
+      <a href="index.html" class="brand">
+        <img src="./assets/icon.png" alt="Kanakk Book">
+        <span>Kanakk Book</span>
       </a>
 
-      <button
-        class="menu"
-        onclick="document.querySelector('.links').classList.toggle('open')">
-        ☰
-      </button>
-
-      <div class="links">
+      <nav>
         <a href="#features">Features</a>
         <a href="#screenshots">Screenshots</a>
         <a href="#premium">Premium</a>
         <a href="privacy-policy.html">Privacy</a>
-        <a href="#support">Support</a>
-      </div>
+        <a href="contact.html">Contact</a>
+        <a href="#premium" class="nav-button">Get Premium</a>
+      </nav>
 
-    </nav>
+    </div>
   </header>
 
-  <section id="home" class="hero">
-    <div class="container hero-grid">
+
+  <!-- ================= HERO ================= -->
+
+  <section class="hero">
+
+    <div class="hero-container">
 
       <div>
-        <span class="eyebrow">
-          DIGITAL KHATA FOR SMALL BUSINESSES
-        </span>
-
         <h1>
-          Keep your business accounts
-          <span>simple.</span>
+          Manage Your Business
+          <span>Simply.</span>
         </h1>
 
         <p>
-          Manage customers, credit, payments, outstanding balances
-          and payment reminders — all in one easy-to-use app.
+          Kanakk Book is a simple and powerful app for managing
+          customers, credit, payments and outstanding balances.
         </p>
 
-        <div class="buttons">
-          <a class="btn primary" href="#download">
-            Get Kanakk Book
+        <div class="hero-buttons">
+          <a href="#premium" class="primary-btn">
+            View Premium Plans
           </a>
 
-          <a class="btn outline" href="#features">
+          <a href="#features" class="secondary-btn">
             Explore Features
           </a>
         </div>
       </div>
 
-      <div class="phone-wrap">
-        <div class="phone">
-          <img
-            src="assets/home.jpeg"
-            alt="Kanakk Book dashboard">
-        </div>
+      <div class="hero-icon">
+        <img src="./assets/icon.png" alt="Kanakk Book App Icon">
       </div>
 
     </div>
+
   </section>
 
-  <section class="section white">
-    <div class="container center heading">
 
-      <span class="kicker">
-        BUILT FOR EVERYDAY BUSINESS
-      </span>
+  <!-- ================= FEATURES ================= -->
 
-      <h2>
-        Your daily khata, now digital.
-      </h2>
+  <section class="features" id="features">
 
-      <p>
-        Move away from paper notebooks and keep customer accounts
-        organized with a simple workflow.
-      </p>
-
-    </div>
-  </section>
-
-  <section id="features" class="section">
     <div class="container">
 
-      <div class="heading center">
-        <span class="kicker">FEATURES</span>
+      <h2 class="section-title">
+        Everything You Need
+      </h2>
 
-        <h2>
-          Everything you need to manage dues
-        </h2>
+      <p class="section-subtitle">
+        Keep your daily business accounts organized and
+        easily manage customer balances from your phone.
+      </p>
 
-        <p>
-          Simple tools focused on customer accounts and daily transactions.
-        </p>
-      </div>
+      <div class="feature-grid">
 
-      <div class="features">
-
-        <div class="feature">
+        <div class="feature-card">
           <div class="feature-icon">👥</div>
           <h3>Customer Management</h3>
           <p>
-            Add customer names, mobile numbers, addresses,
-            notes and opening balances.
+            Add customers with their name, phone number,
+            address, opening balance and notes.
           </p>
         </div>
 
-        <div class="feature">
-          <div class="feature-icon">↗</div>
-          <h3>Credit Tracking</h3>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>Credit Management</h3>
           <p>
-            Record purchases and credit transactions and keep
-            track of what is due.
+            Record credit transactions and keep track of
+            outstanding customer balances.
           </p>
         </div>
 
-        <div class="feature">
-          <div class="feature-icon">↓</div>
+        <div class="feature-card">
+          <div class="feature-icon">💵</div>
           <h3>Payment Tracking</h3>
           <p>
-            Record payments with dates, descriptions and
-            payment methods.
+            Record payments and instantly see how much
+            each customer still owes.
           </p>
         </div>
 
-        <div class="feature">
-          <div class="feature-icon">₹</div>
-          <h3>Outstanding Balance</h3>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Reports</h3>
           <p>
-            See current customer dues clearly from the dashboard
-            and account pages.
+            View useful information about your business
+            transactions and outstanding amounts.
           </p>
         </div>
 
-        <div class="feature">
-          <div class="feature-icon">💬</div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
           <h3>WhatsApp Reminders</h3>
           <p>
-            Choose a language and message template and send
-            payment reminders through WhatsApp.
+            Send payment reminders to customers through
+            WhatsApp with convenient message templates.
           </p>
         </div>
 
-        <div class="feature">
+        <div class="feature-card">
           <div class="feature-icon">🌐</div>
           <h3>English & Malayalam</h3>
           <p>
-            Use Kanakk Book in English or Malayalam for a
-            comfortable experience.
+            Use Kanakk Book comfortably in English or
+            Malayalam.
           </p>
         </div>
 
-        <div class="feature">
-          <div class="feature-icon">📄</div>
-          <h3>Transaction History</h3>
-          <p>
-            Review customer transactions and account information
-            whenever you need it.
-          </p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">☁</div>
+        <div class="feature-card">
+          <div class="feature-icon">☁️</div>
           <h3>Backup & Restore</h3>
           <p>
-            Premium users can unlock backup and restore functionality.
+            Premium users can securely back up and restore
+            their business data.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>PDF Reports</h3>
+          <p>
+            Generate customer transaction information
+            in PDF format.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⭐</div>
+          <h3>Premium Experience</h3>
+          <p>
+            Remove ads and unlock all premium features
+            with a subscription.
           </p>
         </div>
 
       </div>
+
     </div>
+
   </section>
 
-  <section id="screenshots" class="section white">
+
+  <!-- ================= SCREENSHOTS ================= -->
+
+  <section class="screenshots" id="screenshots">
+
     <div class="container">
 
-      <div class="heading center">
-        <span class="kicker">APP PREVIEW</span>
+      <h2 class="section-title">
+        See Kanakk Book in Action
+      </h2>
 
-        <h2>
-          See Kanakk Book in action
-        </h2>
-      </div>
+      <p class="section-subtitle">
+        A clean and simple interface designed for everyday
+        business use.
+      </p>
 
-      <div class="screens">
+      <div class="screenshot-grid">
 
-        <figure>
-          <img src="assets/home.jpeg" alt="Home dashboard">
-          <figcaption>Dashboard</figcaption>
-        </figure>
+        <div class="screenshot-card">
+          <img
+            src="./assets/screenshot-1.png"
+            alt="Kanakk Book Home Screen"
+          >
+          <h3>Business Dashboard</h3>
+        </div>
 
-        <figure>
-          <img src="assets/customer.jpeg" alt="Add customer">
-          <figcaption>Add Customer</figcaption>
-        </figure>
+        <div class="screenshot-card">
+          <img
+            src="./assets/screenshot-2.png"
+            alt="Kanakk Book Customer Screen"
+          >
+          <h3>Customer Management</h3>
+        </div>
 
-        <figure>
-          <img src="assets/credit.jpeg" alt="Add credit">
-          <figcaption>Credit</figcaption>
-        </figure>
-
-        <figure>
-          <img src="assets/payment.jpeg" alt="Add payment">
-          <figcaption>Payment</figcaption>
-        </figure>
-
-        <figure>
-          <img src="assets/transactions.jpeg" alt="Transactions">
-          <figcaption>Transactions</figcaption>
-        </figure>
-
-        <figure>
-          <img src="assets/reminder.jpeg" alt="Send reminder">
-          <figcaption>WhatsApp Reminder</figcaption>
-        </figure>
+        <div class="screenshot-card">
+          <img
+            src="./assets/screenshot-3.png"
+            alt="Kanakk Book Transactions"
+          >
+          <h3>Track Transactions</h3>
+        </div>
 
       </div>
+
     </div>
+
   </section>
 
-  <section id="premium" class="section premium">
+
+  <!-- ================= PREMIUM PLANS ================= -->
+
+  <section class="premium" id="premium">
+
     <div class="container">
 
-      <div class="heading center">
-        <span class="kicker">
-          KADA KANAKKU PREMIUM
-        </span>
+      <h2 class="section-title">
+        Kanakk Book Premium
+      </h2>
 
-        <h2>
-          Choose your premium duration
-        </h2>
-
-        <p>
-          All three plans include the same premium features.
-          Only the duration is different.
-        </p>
-      </div>
+      <p class="section-subtitle">
+        Choose the plan that works best for you.
+        All three plans include the same premium features.
+      </p>
 
       <div class="plans">
 
-        <article class="plan">
+        <!-- MONTHLY -->
 
-          <span class="label">MONTHLY</span>
+        <div class="plan">
 
-          <h3>
-            Monthly Premium
-          </h3>
+          <h3>Monthly Premium</h3>
 
           <div class="price">
             ₹49
-            <small>/ month</small>
           </div>
 
-          <p>
-            Premium access for 1 month.
-          </p>
+          <div class="duration">
+            per month
+          </div>
 
           <ul>
-            <li>✓ Remove ads</li>
-            <li>✓ Backup & Restore</li>
-            <li>✓ All premium features</li>
+            <li>Remove advertisements</li>
+            <li>Backup & Restore</li>
+            <li>PDF reports</li>
+            <li>All premium features</li>
           </ul>
 
-          <a class="btn green-outline" href="#download">
+          <a href="#" class="plan-btn">
             Choose Monthly
           </a>
 
-        </article>
+        </div>
 
-        <article class="plan featured">
 
-          <span class="badge">
-            POPULAR
-          </span>
+        <!-- YEARLY -->
 
-          <span class="label">
-            YEARLY
-          </span>
+        <div class="plan featured">
 
-          <h3>
-            Yearly Premium
-          </h3>
+          <div class="popular">
+            BEST VALUE
+          </div>
+
+          <h3>Yearly Premium</h3>
 
           <div class="price">
             ₹399
-            <small>/ year</small>
           </div>
 
-          <p>
-            Premium access for 1 year.
-          </p>
+          <div class="duration">
+            per year
+          </div>
 
           <ul>
-            <li>✓ Remove ads</li>
-            <li>✓ Backup & Restore</li>
-            <li>✓ All premium features</li>
+            <li>Remove advertisements</li>
+            <li>Backup & Restore</li>
+            <li>PDF reports</li>
+            <li>All premium features</li>
           </ul>
 
-          <a class="btn primary" href="#download">
+          <a href="#" class="plan-btn">
             Choose Yearly
           </a>
 
-        </article>
+        </div>
 
-        <article class="plan">
 
-          <span class="label">
-            LIFETIME
-          </span>
+        <!-- LIFETIME -->
 
-          <h3>
-            Lifetime Premium
-          </h3>
+        <div class="plan">
+
+          <h3>Lifetime Premium</h3>
 
           <div class="price">
             ₹999
-            <small>/ lifetime</small>
           </div>
 
-          <p>
-            Premium access for a lifetime.
-          </p>
+          <div class="duration">
+            Lifetime access
+          </div>
 
           <ul>
-            <li>✓ Remove ads</li>
-            <li>✓ Backup & Restore</li>
-            <li>✓ All premium features</li>
+            <li>Remove advertisements</li>
+            <li>Backup & Restore</li>
+            <li>PDF reports</li>
+            <li>All premium features</li>
           </ul>
 
-          <a class="btn green-outline" href="#download">
+          <a href="#" class="plan-btn">
             Choose Lifetime
           </a>
 
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="download" class="section download">
-    <div class="container download-box">
-
-      <img
-        class="download-logo"
-        src="assets/logo.png"
-        alt="Kanakk Book">
-
-      <div>
-
-        <span class="kicker">
-          GET KANAKK BOOK
-        </span>
-
-        <h2>
-          Start managing your khata digitally.
-        </h2>
-
-        <p>
-          Download Kanakk Book and keep your customer accounts organized.
-        </p>
-
-        <a
-          class="btn primary"
-          href="#"
-          onclick="alert('Replace this button with your Google Play Store link.');return false">
-          Download on Google Play
-        </a>
+        </div>
 
       </div>
 
     </div>
+
   </section>
 
-  <footer id="support" class="footer">
 
-    <div class="container footer-grid">
+  <!-- ================= CTA ================= -->
+
+  <section class="cta">
+
+    <div class="container">
+
+      <h2>
+        Start Managing Your Business Better
+      </h2>
+
+      <p>
+        Keep customer credits, payments and balances
+        organized with Kanakk Book.
+      </p>
+
+      <a href="#premium" class="primary-btn">
+        Explore Premium
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <div class="footer-container">
 
       <div>
 
-        <a class="brand" href="#home">
-          <img src="assets/logo.png" alt="">
-          <span>Kanakk <b>Book</b></span>
-        </a>
+        <div class="footer-brand">
+          <img src="./assets/icon.png" alt="Kanakk Book">
+          <span>Kanakk Book</span>
+        </div>
 
         <p>
-          Simple digital bookkeeping for small businesses.
+          A simple customer credit and payment management
+          app for small businesses.
         </p>
 
       </div>
 
+
       <div>
 
-        <h4>Product</h4>
+        <h3>Quick Links</h3>
 
-        <a href="#features">Features</a>
-        <a href="#screenshots">Screenshots</a>
-        <a href="#premium">Premium</a>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#screenshots">Screenshots</a>
+          <a href="#premium">Premium</a>
+        </div>
 
       </div>
 
-      <div>
-
-        <h4>Legal</h4>
-
-        <a href="privacy-policy.html">
-          Privacy Policy
-        </a>
-
-        <a href="terms.html">
-          Terms & Conditions
-        </a>
-
-      </div>
 
       <div>
 
-        <h4>Support</h4>
+        <h3>Legal</h3>
 
-        <a href="mailto:srbshameer098@gmail.com">
-          srbshameer098@gmail.com
-        </a>
+        <div class="footer-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Conditions</a>
+          <a href="contact.html">Contact</a>
+        </div>
 
       </div>
 
     </div>
 
-    <div class="container copy">
-      © <span id="year"></span>
-      Kanakk Book. All rights reserved.
+
+    <div class="copyright">
+      © 2026 Kanakk Book. All rights reserved.
     </div>
 
   </footer>
-
-  <script>
-    document.getElementById('year').textContent =
-      new Date().getFullYear();
-  </script>
 
 </body>
 </html>
